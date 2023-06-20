@@ -3,15 +3,17 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
-// Connect to MongoDB with authentication
 const username = 'Andy';
 const password = '123456789aA';
 const database = 'CloudASM';
 
-mongoose.connect(`mongodb+srv://Andy:123456789aA@asmcloud.3jelcj0.mongodb.net/`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+const uri = `mongodb+srv://${username}:${password}@asmcloud.3jelcj0.mongodb.net/${database}?retryWrites=true&w=majority`;
+
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log('Connected to MongoDB');
   })
