@@ -8,7 +8,7 @@ const username = 'Andy';
 const password = '123456789aA';
 const database = 'CloudASM';
 
-mongoose.connect(`mongodb+srv://${username}:${password}@asmcloud.3jelcj0.mongodb.net/${database}?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://Andy:123456789aA@asmcloud.3jelcj0.mongodb.net/`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
