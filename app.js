@@ -4,13 +4,19 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Connect to MongoDB with authentication
-const username = 'Andy';
-const password = '123456789aA';
-const database = 'CloudASM';
+// const username = 'Andy';
+// const password = '123456789aA';
+// const database = 'CloudASM';
 
-mongoose.connect(`mongodb+srv://${username}:${password}@asmcloud.3jelcj0.mongodb.net/${database}?retryWrites=true&w=majority`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://Andy:123456789aA@asmcloud.3jelcj0.mongodb.net/?retryWrites=true&w=majority";
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 })
   .then(() => {
     console.log('Connected to MongoDB');
