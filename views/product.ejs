@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product List</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Product List</h1>
+    <a href="/products/create" class="btn btn-primary mb-3">Add Product</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(function(product) { %>
+          <tr>
+            <td><%= product.product_id %></td>
+            <td><%= product.product_name %></td>
+            <td><%= product.category_id ? product.category_id.category_name : '' %></td>
+            <td><%= product.product_price %></td>
+            <td><%= product.product_description %></td>
+            <td>
+              <% if (product.product_image) { %>
+                <img src="/images/<%=product.product_image%>" width="100">
+                
+              <% } else { %>
+                No Image Available
+              <% } %>
+            </td>
+            <td>
+              <a href="/products/<%= product._id %>/edit" class="btn btn-primary">Edit</a>
+              <form action="/products/<%= product._id %>/delete" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add Bootstrap JS script links -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>
