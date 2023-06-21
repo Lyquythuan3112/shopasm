@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // Connect to MongoDB
-const uri = process.env.MONGODB_URI;
+var uri = process.env.MONGODB_URI;
 mongoose
   .connect(uri, {
     useNewUrlParser: true,
