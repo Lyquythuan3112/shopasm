@@ -1,7 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
+var express = require('express');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var app = express();
 require('dotenv').config();
 
 // Middleware
@@ -24,8 +24,8 @@ mongoose
   });
 
 // Routes
-const categoryRoutes = require('./routes/categoryRoutes');
-const productRoutes = require('./routes/productRoutes');
+var categoryRoutes = require('./routes/categoryRoutes');
+var productRoutes = require('./routes/productRoutes');
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -36,7 +36,7 @@ app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);
 
 // Start the server
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
