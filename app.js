@@ -34,16 +34,24 @@ mongoose
     console.error('Failed to connect to MongoDB', error);
   });
 
+  // Routes
+const categoryRoutes = require('./routes/categoryRoutes');
+const productRoutes = require('./routes/productRoutes');
+
 app.get('/', (req, res) => {
   res.render('index');
 });
+app.get('/categories', (req, res) => {
+  res.render('category',categoryRoutes);
+});
+app.get('/products', (req, res) => {
+  res.render('product',productRoutes);
+});
 
-// Routes
-const categoryRoutes = require('./routes/categoryRoutes');
-const productRoutes = require('./routes/productRoutes');
+
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
-app.use('/categories', categoryRoutes);
-app.use('/products', productRoutes);
+// app.use('/categories', categoryRoutes);
+// app.use('/products', productRoutes);
