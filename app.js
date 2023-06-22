@@ -11,7 +11,7 @@ app.set('views', 'views');
 
 // Connect to MongoDB
 var uri = process.env.MONGODB_URI;
-mongoose
+mongoose    
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
