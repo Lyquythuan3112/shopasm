@@ -37,6 +37,14 @@
         <label for="product_image">Image:</label>
         <input type="file" name="product_image" id="product_image" class="form-control-file">
       </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="text" name="quantity" id="quantity" class="form-control" value="<%= product.quantity %>" required>
+      </div>
+      <div class="form-group">
+        <label for="datetime">Date/Time:</label>
+        <input type="datetime-local" name="datetime" id="datetime" class="form-control" value="<%= product.datetime %>" required>
+      </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>

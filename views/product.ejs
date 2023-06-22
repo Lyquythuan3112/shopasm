@@ -18,6 +18,8 @@
           <th>Price</th>
           <th>Description</th>
           <th>Image</th>
+          <th>Quantity</th>
+          <th>Date/Time</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -32,11 +34,12 @@
             <td>
               <% if (product.product_image) { %>
                 <img src="/images/<%=product.product_image%>" width="100">
-                
               <% } else { %>
                 No Image Available
               <% } %>
             </td>
+            <td><%= product.quantity %></td>
+            <td><%= product.datetime %></td>
             <td>
               <a href="/products/<%= product._id %>/edit" class="btn btn-primary">Edit</a>
               <form action="/products/<%= product._id %>/delete" method="POST" style="display:inline;">

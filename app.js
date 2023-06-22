@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var Product = require('./models/Product');
 var app = express();
 require('dotenv').config();
 
@@ -28,7 +29,15 @@ var categoryRoutes = require('./routes/categoryRoutes');
 var productRoutes = require('./routes/productRoutes');
 
 app.get('/', (req, res) => {
-  res.render('index');
+  Product.find()
+    .populate('category_id', 'category_name')
+    .exec()
+    .then((products) => {
+      res.render('index', { products: products });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 app.use(express.static('public'));

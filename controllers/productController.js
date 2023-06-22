@@ -8,6 +8,7 @@ exports.productList = function (req, res, next) {
     .exec()
     .then(function (products) {
       res.render('product', { products: products });
+      
     })
     .catch(function (err) {
       return next(err);
@@ -34,6 +35,8 @@ exports.productCreatePost = async function (req, res, next) {
       product_price: parseFloat(req.body.product_price),
       product_description: req.body.product_description,
       product_image: req.file ? req.file.filename : null,
+      quantity: parseInt(req.body.quantity),
+      datetime: new Date(req.body.datetime),
     });
 
     await product.save();
@@ -42,7 +45,6 @@ exports.productCreatePost = async function (req, res, next) {
     next(err);
   }
 };
-
 
 // Display product update form on GET
 exports.productUpdateGet = function (req, res, next) {
@@ -65,8 +67,6 @@ exports.productUpdateGet = function (req, res, next) {
     .catch(next);
 };
 
-
-
 // Handle product update on POST
 exports.productUpdatePost = async function (req, res, next) {
   try {
@@ -76,6 +76,8 @@ exports.productUpdatePost = async function (req, res, next) {
       category_id: req.body.category_id,
       product_price: parseFloat(req.body.product_price),
       product_description: req.body.product_description,
+      quantity: parseInt(req.body.quantity),
+      datetime: new Date(req.body.datetime),
     };
 
     if (req.file) {
@@ -89,12 +91,10 @@ exports.productUpdatePost = async function (req, res, next) {
   }
 };
 
-
 // Handle product delete on POST
 exports.productDelete = async function (req, res, next) {
   try {
     await Product.findByIdAndRemove(req.params.id);
-
     res.redirect('/products');
   } catch (err) {
     next(err);
