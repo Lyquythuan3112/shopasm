@@ -30,7 +30,7 @@ var productRoutes = require('./routes/productRoutes');
 
 app.get('/', (req, res) => {
   Product.find()
-    .populate('category_id', 'category_name')
+    .populate('product_id', 'product_name')
     .exec()
     .then((products) => {
       res.render('index', { products: products });

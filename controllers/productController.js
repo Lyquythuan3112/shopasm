@@ -29,7 +29,7 @@ exports.productCreateGet = async function (req, res, next) {
 exports.productCreatePost = async function (req, res, next) {
   try {
     const product = new Product({
-      product_id: parseInt(req.body.product_id),
+      product_id: parseInt(req.body.product_id),  
       product_name: req.body.product_name,
       category_id: req.body.category_id,
       product_price: parseFloat(req.body.product_price),
